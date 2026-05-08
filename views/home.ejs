@@ -1,0 +1,90 @@
+<%- include("partials/header.ejs") %>
+<div class="page-header"> 
+<h1>WELCOME TO LIBRAREX</h1>
+<p>Books i've read and loved</p>
+</div>
+
+<form action="/addBook" method="POST">
+    <label for="addBook">Add a book</label>
+    <input id="addBook" type="text" name="addBook" placeholder="Lord of the Rings">
+    
+    <br>
+    <br>
+<div id="reviewSection" style="display: none;">
+    <label for="review">Write your review</label>
+    <textarea id="review" type="text" name="review" placeholder="Great book because..."></textarea>
+</div>
+<br>
+<div id="ratingSection" style="display: none;">
+    <label for="rating">Rating</label>
+    <select id="rating" name="rating">
+        <% for(let i=1; i<=10; i++) { %>
+            <option value="<%= i %>"><%= i %></option>
+        <%}%>
+    </select>
+    <label for="rating">/10</label>
+</div>
+<input type="submit" value="Add Book">
+</form>
+<br>
+<br>
+
+<div class="books-grid">
+    <% locals.books.forEach((book) => { %>
+        <a href="/book/<%= book.id %>" class="book-card" >
+            <div class="book-card-body" >
+        <h2> <%= book.title %></h2>
+         <div class="rating">
+                    <span class="rating-number"><%= book.rating %></span>
+                    <span class="rating-label">out of 10</span>
+                </div>
+        </div>
+        </a>
+   <% }); %>
+    
+</div>
+
+<script>
+    const bookInput = document.getElementById("addBook");
+    const reviewInput = document.getElementById("review");
+    const reviewSection = document.getElementById("reviewSection");
+    const ratingSection = document.getElementById("ratingSection");
+
+   bookInput.addEventListener("input", () => {
+    if (bookInput.value.trim() !== "") {
+        reviewSection.style.display = "block";
+        reviewSection.classList.add("visible");
+    } else {
+        reviewSection.style.display = "none";
+        reviewSection.classList.remove("visible");
+        ratingSection.style.display = "none";
+        ratingSection.classList.remove("visible");
+    }
+});
+
+reviewInput.addEventListener("input", () => {
+    if (reviewInput.value.trim() !== "") {
+        ratingSection.style.display = "block";
+        ratingSection.classList.add("visible");
+    } else {
+        ratingSection.style.display = "none";
+        ratingSection.classList.remove("visible");
+    }
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include("partials/footer.ejs") %>

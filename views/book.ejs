@@ -1,0 +1,67 @@
+<%- include("partials/header.ejs") %>
+
+<div class="book-detail">
+    <div class="book-detail-cover">
+        <img src="<%= cover %>" alt="<%= book.title %>">
+    </div>
+
+    <div class="book-detail-info">
+        <h1><%= book.title %></h1>
+        <div class="book-detail-rating">
+            <span class="big-num"><%= book.rating %></span>
+            <span class="out-of">/10</span>
+        </div>
+        <h3>Review</h3>
+        <p><%= book.review %></p>
+        <a href="/" class="back-link">← Back to all books</a>
+
+        <!-- Edit button -->
+        <button id="editBtn" class="edit-btn" onclick="toggleEdit()">Edit Book</button>
+
+        <!-- Edit form hidden by default -->
+        <div id="editSection" style="display:none">
+            <form action="/edit/<%= book.id %>" method="POST">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" value="<%= book.title %>">
+                </div>
+                <div class="form-group">
+                    <label for="review">Review</label>
+                    <textarea id="review" name="review"><%= book.review %></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="rating">Rating</label>
+                    <select id="rating" name="rating">
+                        <% for(let i = 1; i <= 10; i++) { %>
+                            <option value="<%= i %>" <%= book.rating == i ? 'selected' : '' %>><%= i %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <button type="submit">Save Changes</button>
+                <button type="button" onclick="toggleEdit()">Cancel</button>
+            </form>
+        </div>
+
+        <!-- Delete form -->
+        <form action="/delete" method="POST">
+            <input type="hidden" name="id" value="<%= book.id %>">
+            <input type="submit" class="delete-btn" value="Delete">
+        </form>
+    </div>
+</div>
+
+<script>
+    function toggleEdit() {
+        const editSection = document.getElementById("editSection");
+        const editBtn = document.getElementById("editBtn");
+        if (editSection.style.display === "none") {
+            editSection.style.display = "block";
+            editBtn.textContent = "Cancel";
+        } else {
+            editSection.style.display = "none";
+            editBtn.textContent = "Edit Book";
+        }
+    }
+</script>
+
+<%- include("partials/footer.ejs") %>
