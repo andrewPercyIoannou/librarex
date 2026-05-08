@@ -56,15 +56,32 @@ app.post("/addBook", async (req, res) => {
     }
 });
 
-app.get("/book/:id", async (req,res) =>{
+app.get("/book/:id", async (req, res) => {
     const id = req.params.id;
-    const result = await db.query("SELECT * FROM books WHERE id = $1 ",[id]);
+    const result = await db.query("SELECT * FROM books WHERE id = $1", [id]);
     const book = result.rows[0];
-    const openLibrary = "https://openlibrary.org/search.json?title=";
-    const response = await axios.get(openLibrary + book.title);
-    const cover = `https://covers.openlibrary.org/b/id/${response.data.docs[0].cover_i}-M.jpg`;
 
-    res.render("book.ejs", {book, cover});
+    const openLibrary = "https://openlibrary.org/search.json?title=";
+    
+    try {
+        const response = await axios.get(openLibrary + book.title);
+        const bookData = response.data.docs[0];
+
+        if (!bookData || !bookData.cover_i) {
+            return res.render("book.ejs", { 
+                book, 
+                cover: null,
+                error: "We couldn't find this book in our library. Try editing the title to match the exact book name."
+            });
+        }
+
+        const cover = `https://covers.openlibrary.org/b/id/${bookData.cover_i}-M.jpg`;
+        res.render("book.ejs", { book, cover, error: null });
+
+    } catch (err) {
+        console.log(err);
+        res.render("book.ejs", { book, cover: null, error: "Something went wrong fetching the cover." });
+    }
 });
 
 app.post("/delete", async(req,res) =>{

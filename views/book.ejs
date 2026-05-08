@@ -2,11 +2,20 @@
 
 <div class="book-detail">
     <div class="book-detail-cover">
-        <img src="<%= cover %>" alt="<%= book.title %>">
+        <% if (cover) { %>
+            <img src="<%= cover %>" alt="<%= book.title %>">
+        <% } else { %>
+            <div class="no-cover"><%= book.title %></div>
+        <% } %>
     </div>
 
     <div class="book-detail-info">
         <h1><%= book.title %></h1>
+
+        <% if (error) { %>
+            <div class="error-message">⚠️ <%= error %></div>
+        <% } %>
+
         <div class="book-detail-rating">
             <span class="big-num"><%= book.rating %></span>
             <span class="out-of">/10</span>
@@ -42,6 +51,8 @@
             </form>
         </div>
 
+        <br>
+        <br>
         <!-- Delete form -->
         <form action="/delete" method="POST">
             <input type="hidden" name="id" value="<%= book.id %>">
