@@ -1,0 +1,36 @@
+<%- include("partials/header.ejs") %>
+
+<div class="page-header">
+    <h1>Welcome Back</h1>
+    <p>Login to your Librarex account</p>
+</div>
+
+
+
+<div class="add-section">
+    <form action="/login" method="POST">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="••••••••">
+        </div>
+        <button type="submit">Login</button>
+    </form>
+    <br>
+    <p>Don't have an account? <a href="/register">Register here</a></p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<%- include("partials/footer.ejs") %>
