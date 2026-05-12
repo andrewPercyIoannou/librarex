@@ -22,12 +22,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-const db  = new pg.Client({
+const { Pool } = pg;
+const db = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: { rejectUnauthorized: false }
 });
-db.connect();
-
 function isAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
