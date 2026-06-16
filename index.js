@@ -22,6 +22,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use((req, res, next) => {
+    res.locals.isAuthenticated = req.isAuthenticated();
+    res.locals.user = req.user || null;
+    next();
+});
+
 const { Pool } = pg;
 const db = new Pool({
     connectionString: process.env.DATABASE_URL,
@@ -78,14 +84,23 @@ app.get("/logout", (req, res) => {
     });
 });
 
-// protected routes
-app.get("/", isAuthenticated, async (req, res) => {
-    const result = await db.query(
-        "SELECT * FROM books WHERE user_id = $1 ORDER BY id ASC",
-        [req.user.id]
-    );
-    const books = result.rows;
-    res.render("home.ejs", { books });
+// home / landing route
+app.get("/", async (req, res) => {
+    if (req.isAuthenticated()) {
+        try {
+            const result = await db.query(
+                "SELECT * FROM books WHERE user_id = $1 ORDER BY id ASC",
+                [req.user.id]
+            );
+            const books = result.rows;
+            res.render("home.ejs", { books });
+        } catch (err) {
+            console.log(err);
+            res.redirect("/login");
+        }
+    } else {
+        res.render("landing.ejs");
+    }
 });
 
 app.post("/addBook", isAuthenticated, async (req, res) => {

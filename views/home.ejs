@@ -4,30 +4,31 @@
 <p>Books i've read and loved</p>
 </div>
 
-<form action="/addBook" method="POST">
-    <label for="addBook">Add a book</label>
-    <input id="addBook" type="text" name="addBook" placeholder="Lord of the Rings">
+<form action="/addBook" method="POST" class="add-section">
+    <div class="form-group">
+        <label for="addBook">Add a book</label>
+        <input id="addBook" type="text" name="addBook" placeholder="Lord of the Rings" required>
+    </div>
     
-    <br>
-    <br>
-<div id="reviewSection" style="display: none;">
-    <label for="review">Write your review</label>
-    <textarea id="review" type="text" name="review" placeholder="Great book because..."></textarea>
-</div>
-<br>
-<div id="ratingSection" style="display: none;">
-    <label for="rating">Rating</label>
-    <select id="rating" name="rating">
-        <% for(let i=1; i<=10; i++) { %>
-            <option value="<%= i %>"><%= i %></option>
-        <%}%>
-    </select>
-    <label for="rating">/10</label>
-</div>
-<input type="submit" value="Add Book">
+    <div class="form-group" id="reviewSection">
+        <label for="review">Write your review</label>
+        <textarea id="review" name="review" placeholder="Great book because..." required></textarea>
+    </div>
+
+    <div class="form-group" id="ratingSection">
+        <label for="rating">Rating</label>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <select id="rating" name="rating" style="width: auto;">
+                <% for(let i=1; i<=10; i++) { %>
+                    <option value="<%= i %>"><%= i %></option>
+                <%}%>
+            </select>
+            <span style="font-size: 0.95rem; opacity: 0.75;">/10</span>
+        </div>
+    </div>
+    
+    <input type="submit" value="Add Book">
 </form>
-<br>
-<br>
 
 <div class="books-grid">
     <% locals.books.forEach((book) => { %>
@@ -41,50 +42,6 @@
         </div>
         </a>
    <% }); %>
-    
 </div>
-
-<script>
-    const bookInput = document.getElementById("addBook");
-    const reviewInput = document.getElementById("review");
-    const reviewSection = document.getElementById("reviewSection");
-    const ratingSection = document.getElementById("ratingSection");
-
-   bookInput.addEventListener("input", () => {
-    if (bookInput.value.trim() !== "") {
-        reviewSection.style.display = "block";
-        reviewSection.classList.add("visible");
-    } else {
-        reviewSection.style.display = "none";
-        reviewSection.classList.remove("visible");
-        ratingSection.style.display = "none";
-        ratingSection.classList.remove("visible");
-    }
-});
-
-reviewInput.addEventListener("input", () => {
-    if (reviewInput.value.trim() !== "") {
-        ratingSection.style.display = "block";
-        ratingSection.classList.add("visible");
-    } else {
-        ratingSection.style.display = "none";
-        ratingSection.classList.remove("visible");
-    }
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <%- include("partials/footer.ejs") %>

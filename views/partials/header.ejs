@@ -9,5 +9,12 @@
 <body>
     <nav>
         <a href="/" class="logo">Librarex</a>
-        <a href="/logout">Logout</a>
+        <div class="nav-links">
+            <% if (locals.isAuthenticated) { %>
+                <a href="/logout">Logout</a>
+            <% } else { %>
+                <a href="/login" class="nav-link">Sign In</a>
+                <a href="/register" class="nav-link btn-nav">Register</a>
+            <% } %>
+        </div>
     </nav>
