@@ -597,7 +597,7 @@ input[type="submit"]:hover {
 
 .book-1 {
     height: 280px;
-    background: linear-gradient(135deg, var(--brown), #4e2e17);
+    background: linear-gradient(135deg, #171e4e);
     transform: rotate(-3deg);
 }
 
