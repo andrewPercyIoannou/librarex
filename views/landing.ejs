@@ -1,81 +1,101 @@
 <%- include("partials/header.ejs") %>
 
 <div class="landing-container">
-    <!-- Hero Section -->
-    <header class="landing-hero animate-fade-in">
-        <div class="landing-hero-content">
-            <span class="landing-badge">Your Personal Reading Sanctuary</span>
-            <h1>Every book read is a story remembered.</h1>
-            <p>Librarex helps you organize your personal library, write thoughtful reviews, and rate your favorite reads—all in one elegant space.</p>
-            <div class="landing-cta-group">
-                <a href="/register" class="cta-button primary-cta">Create Free Account</a>
-                <a href="/login" class="cta-button secondary-cta">Sign In</a>
-            </div>
+  <!-- Hero Section -->
+  <header class="landing-hero animate-fade-in">
+    <div class="landing-hero-content">
+      <span class="landing-badge">Your Personal Reading Sanctuary</span>
+      <h1>Every book read is a story remembered.</h1>
+      <p>
+        Librarex helps you organize your personal library, write thoughtful
+        reviews, and rate your favorite reads—all in one elegant space.
+      </p>
+      <div class="landing-cta-group">
+        <a href="/register" class="cta-button primary-cta"
+          >Create Free Account</a
+        >
+        <a href="/login" class="cta-button secondary-cta">Sign In</a>
+      </div>
+    </div>
+    <div class="landing-hero-visual">
+      <div class="visual-shelf">
+        <div class="visual-book book-1">
+          <span class="book-spine">Fiction</span>
         </div>
-        <div class="landing-hero-visual">
-            <div class="visual-shelf">
-                <div class="visual-book book-1">
-                    <span class="book-spine">Fiction</span>
-                </div>
-                <div class="visual-book book-2">
-                    <span class="book-spine">History</span>
-                </div>
-                <div class="visual-book book-3">
-                    <span class="book-spine">Science</span>
-                </div>
-                <div class="visual-book book-4">
-                    <span class="book-spine">Philosophy</span>
-                </div>
-            </div>
+        <div class="visual-book book-2">
+          <span class="book-spine">History</span>
         </div>
-    </header>
-
-    <!-- Ornament Divider -->
-    <div class="ornament">❖ &nbsp; ❖ &nbsp; ❖</div>
-
-    <!-- Features Section -->
-    <section class="landing-features">
-        <div class="section-title">
-            <h2>Why Use Librarex?</h2>
-            <p>Designed for passionate readers who value reflection over infinite scrolls.</p>
+        <div class="visual-book book-3">
+          <span class="book-spine">Fantasy</span>
         </div>
-
-        <div class="features-grid">
-            <div class="feature-card animate-slide-up">
-                <div class="feature-icon">📚</div>
-                <h3>Personal Catalog</h3>
-                <p>Build a digital shelf of the books you have read, keeping a permanent archive of your literary journeys.</p>
-            </div>
-
-            <div class="feature-card animate-slide-up" style="animation-delay: 0.1s;">
-                <div class="feature-icon">✍️</div>
-                <h3>Reflective Reviews</h3>
-                <p>Write custom reviews for each book to capture your exact thoughts, key takeaways, and lessons learned.</p>
-            </div>
-
-            <div class="feature-card animate-slide-up" style="animation-delay: 0.2s;">
-                <div class="feature-icon">⭐</div>
-                <h3>Precise Ratings</h3>
-                <p>Rate books out of 10 to establish your personal hall of fame and track how your tastes change over time.</p>
-            </div>
-
-            <div class="feature-card animate-slide-up" style="animation-delay: 0.3s;">
-                <div class="feature-icon">🖼️</div>
-                <h3>Open Library Covers</h3>
-                <p>Automatically fetches beautiful book cover art using the Open Library API simply by typing the book's title.</p>
-            </div>
+        <div class="visual-book book-4">
+          <span class="book-spine">Philosophy</span>
         </div>
-    </section>
-    
-    <!-- Quote Section -->
-    <section class="landing-quote-section">
-        <div class="quote-card">
-            <blockquote>
-                "A room without books is like a body without a soul."
-            </blockquote>
-            <cite>— Marcus Tullius Cicero</cite>
-        </div>
-    </section>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ornament Divider -->
+  <div class="ornament">❖ &nbsp; ❖ &nbsp; ❖</div>
+
+  <!-- Features Section -->
+  <section class="landing-features">
+    <div class="section-title">
+      <h2>Why Use Librarex?</h2>
+      <p>
+        Designed for passionate readers who value reflection over infinite
+        scrolls.
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card animate-slide-up">
+        <div class="feature-icon">📚</div>
+        <h3>Personal Catalog</h3>
+        <p>
+          Build a digital shelf of the books you have read, keeping a permanent
+          archive of your literary journeys.
+        </p>
+      </div>
+
+      <div class="feature-card animate-slide-up" style="animation-delay: 0.1s">
+        <div class="feature-icon">✍️</div>
+        <h3>Reflective Reviews</h3>
+        <p>
+          Write custom reviews for each book to capture your exact thoughts, key
+          takeaways, and lessons learned.
+        </p>
+      </div>
+
+      <div class="feature-card animate-slide-up" style="animation-delay: 0.2s">
+        <div class="feature-icon">⭐</div>
+        <h3>Precise Ratings</h3>
+        <p>
+          Rate books out of 10 to establish your personal hall of fame and track
+          how your tastes change over time.
+        </p>
+      </div>
+
+      <div class="feature-card animate-slide-up" style="animation-delay: 0.3s">
+        <div class="feature-icon">🖼️</div>
+        <h3>Open Library Covers</h3>
+        <p>
+          Automatically fetches beautiful book cover art using the Open Library
+          API simply by typing the book's title.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Section -->
+  <section class="landing-quote-section">
+    <div class="quote-card">
+      <blockquote>
+        "A room without books is like a body without a soul."
+      </blockquote>
+      <cite>— Marcus Tullius Cicero</cite>
+    </div>
+  </section>
 </div>
 
 <%- include("partials/footer.ejs") %>
